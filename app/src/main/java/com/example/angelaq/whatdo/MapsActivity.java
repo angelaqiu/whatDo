@@ -42,7 +42,6 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     //calendar things
     com.google.api.services.calendar.Calendar mService;
-
     GoogleAccountCredential credential;
     private TextView mStatusText;
     private TextView mResultsText;
@@ -86,7 +85,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
         if (isGooglePlayServicesAvailable()) {
             refreshResults();
         } else {
@@ -153,7 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } else {
             if (isDeviceOnline()) {
                 mProgress.show();
-                new ApiAsyncTask(this).execute();
+                new calendar(this).execute();
             } else {
                 mStatusText.setText("No network connection available.");
             }

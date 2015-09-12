@@ -24,7 +24,7 @@ public class calendar extends AsyncTask<Void, Void, Void>{
      * Constructor.
      * @param activity MainActivity that spawned this task.
      */
-    void ApiAsyncTask(MapsActivity activity) {
+    calendar(MapsActivity activity) {
         this.mActivity = activity;
     }
 
@@ -66,24 +66,24 @@ public class calendar extends AsyncTask<Void, Void, Void>{
         // List the next 10 events from the primary calendar.
         DateTime now = new DateTime(System.currentTimeMillis());
         List<String> eventStrings = new ArrayList<String>();
-        CalendarContract.Events events = mActivity.mService.events().list("primary")
-                .setMaxResults(10)
-                .setTimeMin(now)
-                .setOrderBy("startTime")
-                .setSingleEvents(true)
-                .execute();
-        List<EventLog.Event> items = events.getItems();
-
-        for (EventLog.Event event : items) {
-            DateTime start = event.getStart().getDateTime();
-            if (start == null) {
-                // All-day events don't have start times, so just use
-                // the start date.
-                start = event.getStart().getDate();
-            }
-            eventStrings.add(
-                    String.format("%s (%s)", event.getSummary(), start));
-        }
+//        CalendarContract.Events events = mActivity.mService.events().list("primary")
+//                .setMaxResults(10)
+//                .setTimeMin(now)
+//                .setOrderBy("startTime")
+//                .setSingleEvents(true)
+//                .execute();
+//        List<EventLog.Event> items = events.getItems();
+//
+//        for (EventLog.Event event : items) {
+//            DateTime start = event.getStart().getDateTime();
+//            if (start == null) {
+//                // All-day events don't have start times, so just use
+//                // the start date.
+//                start = event.getStart().getDate();
+//            }
+//            eventStrings.add(
+//                    String.format("%s (%s)", event.getSummary(), start));
+//        }
         return eventStrings;
     }
 
